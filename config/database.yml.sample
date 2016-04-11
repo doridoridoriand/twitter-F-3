@@ -1,0 +1,8 @@
+db:
+  production:
+    adapter:  mysql2
+    host:     host
+    username: root
+    password: password
+    database: teamf_twitter
+
