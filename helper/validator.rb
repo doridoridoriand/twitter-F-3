@@ -15,4 +15,8 @@ module Validator
     end
   end
 
+  def has_problems?
+    false
+  end
+
 end
