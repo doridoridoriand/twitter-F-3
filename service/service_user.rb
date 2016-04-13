@@ -1,5 +1,6 @@
 class ServiceUser < Users
 
+  # 重複していた場合trueを返す
   def self.duplicate(user)
     if Users.where(user_id: user).first
       true
