@@ -25,6 +25,7 @@ require 'service_user_token'
 $: << File.expand_path(File.join(__FILE__, '..', 'helper'))
 require 'validator'
 require 'security'
+require 'jsonize'
 
 db_config = YAML.load_file(File.expand_path(File.join(__FILE__, '..', 'config', 'database.yml')))
 
@@ -33,6 +34,7 @@ ActiveRecord::Base.establish_connection(db_config['db']['production'])
 include Constants
 include Validator
 include Security
+include Jsonize
 
 module Base
 end

@@ -6,12 +6,7 @@ class RouterLogin < Sinatra::Base
       user_uuid  = ServiceUser.find_by_username(posted_data['name']).first
       user_token = ServiceUserTokens.create(user_uuid.uuid)
       content_type :json, charset: 'utf-8'
-      {
-        "result": true,
-        "data": {
-          "token": user_token
-        }
-      }.to_json
+      user_token.post_response
     else
       content_type :json, charset: 'utf-8'
       {"error": LOGIN_INFORMATION_HAS_WRONG}.to_json(root: false)
