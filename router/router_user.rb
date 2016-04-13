@@ -1,9 +1,8 @@
 class RouterUser < Sinatra::Base
 
   get '/check_header' do
-    if is_authorized_user?
-      authorized_user_uuid
-    end
+    authorized_user_area!
+    authorized_user_uuid
   end
 
   post '/check_user_id' do
@@ -15,5 +14,9 @@ class RouterUser < Sinatra::Base
       content_type :json, charset: 'utf-8'
       {"error": USER_ID_CAN_GET}.to_json(root: false)
     end
+  end
+
+  get '/token_error' do
+    {"error": TOKEN_BROKEN}.to_json(root: false)
   end
 end

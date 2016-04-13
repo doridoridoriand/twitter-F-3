@@ -4,6 +4,19 @@ module Security
     self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
   end
 
+  def authorized_user_area!
+    unless is_authorized_user?
+      redirect '/token_error'
+    end
+  end
+
+  def authorized_user_uuid
+    user_data = ServiceUserTokens.find_by_token(token_from_client)
+    user_data.uuid
+  end
+
+  private
+
   # @param none
   # @return string
   # 該当ユーザーがいなかった場合はfalse
@@ -16,13 +29,6 @@ module Security
     end
     result_data
   end
-
-  def authorized_user_uuid
-    user_data = ServiceUserTokens.find_by_token(token_from_client)
-    user_data.uuid
-  end
-
-  private
 
   def token_from_client
     data = request.env.select { |k, v| k.start_with?('HTTP_WWW_AU')}

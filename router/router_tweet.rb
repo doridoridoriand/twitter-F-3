@@ -6,6 +6,11 @@ class RouterTweet < Sinatra::Base
   end
 
   post '/tweet' do
+    authorized_user_area!
+    posted_data = JSON.parse request.body.read
+    params['uuid'] = authorized_user_uuid
+    params['content'] = posted_data["text"]
+    ServiceItem.create(params)
   end
 
   get '/tweet/:tweet_id' do
