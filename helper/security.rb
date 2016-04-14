@@ -31,7 +31,7 @@ module Security
   end
 
   def token_from_client
-    data = request.env.select { |k, v| k.start_with?('HTTP_WWW_AU')}
+    data = request.env.select { |k, v| k.start_with?('HTTP_AU')}
     data.values.split(' ').to_a.flatten.first.split(' ').last
   end
 end
