@@ -17,6 +17,20 @@ create table teamf_twitter.user_tokens (
   primary key(`id`)
 ) engine=InnoDB default charset=utf8;
 
+create table teamf_twitter.followings (
+  `id`  int(30) unsigned not null auto_increment,
+  `uuid` varchar(255) not null,
+  `target_uuid` varchar(255) not null,
+  primary key(`id`)
+) engine=InnoDB default charset=utf8;
+
+create table teamf_twitter.followers (
+  `id`  int(30) unsigned not null auto_increment,
+  `uuid` varchar(255) not null,
+  `target_uuid` varchar(255) not null,
+  primary key(`id`)
+) engine=InnoDB default charset=utf8;
+
 create table teamf_twitter.items (
   `id`         int(30)       unsigned not null auto_increment,
   `uuid`       varchar(255)  not null,

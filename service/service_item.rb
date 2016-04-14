@@ -7,4 +7,8 @@ class ServiceItem < Items
                          created_at: Time.now)
     new_item.save
   end
+
+  def self.show(params)
+    Items.where(id: params['from']..params['to'])
+  end
 end

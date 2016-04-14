@@ -1,0 +1,2 @@
+class ServiceFollowing < Following
+end
