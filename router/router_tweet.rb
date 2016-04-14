@@ -20,9 +20,14 @@ class RouterTweet < Sinatra::Base
   post '/tweet' do
     authorized_user_area!
     posted_data = JSON.parse request.body.read
-    params['uuid'] = authorized_user_uuid
-    params['content'] = posted_data["text"]
-    ServiceItem.create(params)
+    if posted_data["text"].less_than_140?
+      params['uuid'] = authorized_user_uuid
+      params['content'] = posted_data["text"]
+      ServiceItem.create(params)
+    else
+      content_type :json, charset: 'utf-8'
+      {"error": CONTENT_OVER_140}.to_json(root: false)
+    end
   end
 
   get '/tweet/:tweet_id' do

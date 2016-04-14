@@ -7,11 +7,11 @@ module Validator
 
   # @param  contents
   # @return contents or Raise Error
-  def is_140?
+  def less_than_140?
     unless self.length.to_i <= 140
-      raise 'ContentsOver140'
+      false
     else
-      self
+      true
     end
   end
 
