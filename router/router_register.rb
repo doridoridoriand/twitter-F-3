@@ -5,7 +5,7 @@ class RouterRegister < Sinatra::Base
     if posted_data.has_problems?
 
       content_type :json, charset: 'utf-8'
-      {"error": WRONG_FORMAT}.to_json(root: false)
+      WRONG_FORMAT.error_response
     else
       unless ServiceUser.duplicate(posted_data['name'])
         user_token = ServiceUserTokens.create(ServiceUser.create(posted_data))
@@ -13,7 +13,7 @@ class RouterRegister < Sinatra::Base
         user_token.post_response
       else
         content_type :json, charset: 'utf-8'
-        {"error": USER_ID_ALREADY_IN_USE}.to_json(root: false)
+        USER_ID_ALREADY_IN_USE.error_response
       end
     end
   end

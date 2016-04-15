@@ -9,14 +9,15 @@ class RouterUser < Sinatra::Base
     posted_data = JSON.parse request.body.read
     if ServiceUser.duplicate(posted_data['name'])
       content_type :json, charset: 'utf-8'
-      {"error": USER_ID_ALREADY_IN_USE}.to_json(root: false)
+      USER_ID_ALREADY_IN_USE.error_response
     else
       content_type :json, charset: 'utf-8'
-      {"error": USER_ID_CAN_GET}.to_json(root: false)
+      USER_ID_CAN_GET.error_response
     end
   end
 
   get '/token_error' do
-    {"error": TOKEN_BROKEN}.to_json(root: false)
+    content_type :json, charset: 'utf-8'
+    TOKEN_BROKEN.error_response
   end
 end

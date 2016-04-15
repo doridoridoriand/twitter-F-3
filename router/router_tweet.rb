@@ -26,7 +26,7 @@ class RouterTweet < Sinatra::Base
       ServiceItem.create(params)
     else
       content_type :json, charset: 'utf-8'
-      {"error": CONTENT_OVER_140}.to_json(root: false)
+      CONTENT_OVER_140.error_response
     end
   end
 

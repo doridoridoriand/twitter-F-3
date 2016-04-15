@@ -9,7 +9,7 @@ class RouterLogin < Sinatra::Base
       user_token.post_response
     else
       content_type :json, charset: 'utf-8'
-      {"error": LOGIN_INFORMATION_HAS_WRONG}.to_json(root: false)
+      LOGIN_INFORMATION_HAS_WRONG.error_response
     end
   end
 end

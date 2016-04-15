@@ -7,4 +7,8 @@ module Jsonize
       }
     }.to_json
   end
+
+  def error_response
+    {"error": self}.to_json(root: false)
+  end
 end
