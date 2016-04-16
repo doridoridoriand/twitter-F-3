@@ -7,7 +7,7 @@ class RouterUser < Sinatra::Base
 
   post '/check_user_id' do
     posted_data = JSON.parse request.body.read
-    if ServiceUser.duplicate(posted_data['name'])
+    if ServiceUser.duplicate(posted_data['user_id'])
       content_type :json, charset: 'utf-8'
       USER_ID_ALREADY_IN_USE.error_response
     else
