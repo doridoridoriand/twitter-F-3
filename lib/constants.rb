@@ -6,4 +6,6 @@ module Constants
   UUID_NOT_FOUND              = '該当するユーザーが発見できませんでした'
   TOKEN_BROKEN                = 'トークンが不正です'
   CONTENT_OVER_140            = 'つぶやき内容が140文字を超えています'
+
+  ROOT_URL                    = 'http://192.168.33.10'
 end
