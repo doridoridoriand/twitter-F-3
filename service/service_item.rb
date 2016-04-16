@@ -11,4 +11,8 @@ class ServiceItem < Items
   def self.show(params)
     Items.where(id: params['from']..params['to'])
   end
+
+  def self.find_by_uuid_hex(params)
+    Items.where(uuid: params['uuid'], hex: params['hex'])
+  end
 end

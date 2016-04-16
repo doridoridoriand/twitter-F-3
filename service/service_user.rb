@@ -26,6 +26,10 @@ class ServiceUser < Users
     Users.where(user_id: username)
   end
 
+  def self.find_by_uuid(uuid)
+    Users.where(uuid: uuid)
+  end
+
   # @return uuid
   def self.create(params)
     user_uuid = SecureRandom.uuid
