@@ -6,8 +6,9 @@ class ServiceFollowing < Following
   end
 
   def self.delete(params)
-    Following.delete(uuid: params['uuid'],
-                     target_uuid: params['target_uuid'])
+    target = Following.where(uuid: params['uuid'],
+                             target_uuid: params['target_uuid']).first
+    target.destroy
   end
 
   def self.show(params)
@@ -26,5 +27,9 @@ class ServiceFollowing < Following
     else
       false
     end
+  end
+
+  def self.is_not_follow_yet?(params)
+    !ServiceFollowing.is_already_followed?(params)
   end
 end
