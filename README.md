@@ -66,6 +66,8 @@
 **Authorization Header Required**
 [See RFC6750](https://tools.ietf.org/html/rfc6750)
 
+`Authorization: Bearer xxxxxxxxxxxxxxx`
+
 ### Request Body
 ```:json
 {
@@ -82,4 +84,65 @@
 #### Tweet Fail
 ```:json
 {"error": "error message"}
+```
+
+## POST /follow
+**Authorization Header Required**
+[See RFC6750](https://tools.ietf.org/html/rfc6750)
+
+`Authorization: Bearer xxxxxxxxxxxxxxx`
+
+### Request Body
+```:json
+{
+  "target_user_token": "xxxxxxxxxxxxxxx"
+}
+```
+
+### Response
+#### Follow Succeed
+```:json
+{"result": true}
+```
+
+#### Follow Fail
+```:json
+{"error": "error message"}
+```
+
+## POST /unfollow
+**Authorization Header Required**
+[See RFC6750](https://tools.ietf.org/html/rfc6750)
+
+`Authorization: Bearer xxxxxxxxxxxxxxx`
+
+### Request Body
+```:json
+{
+  "target_user_token": "xxxxxxxxxxxxxxx"
+}
+```
+
+### Response
+#### Follow Succeed
+```:json
+{"result": true}
+```
+
+#### Follow Fail
+```:json
+{"error": "error message"}
+```
+
+## POST /check_user_id
+### Request Body
+```:json
+{
+  "user_id": "username"
+}
+```
+
+### Response
+```:json
+{"error": "message (can use or not)"}
 ```
