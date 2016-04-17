@@ -11,4 +11,10 @@ module Jsonize
   def error_response
     {"error": self}.to_json(root: false)
   end
+
+  def tweet_response
+    {
+      "result": true
+    }.to_json(root: false)
+  end
 end

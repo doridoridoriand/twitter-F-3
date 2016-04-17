@@ -2,19 +2,21 @@ class RouterTweet < Sinatra::Base
 
   # APIのルートにGETでアクセスするとタイムライン一覧を取得するという仕様なのでそれに従う
   get '/' do
-    number_of_items = {}
+    authorized_user_area!
+    sort_params = {}
+    authorized_user_uuid
     unless params['amounts'] && params['page']
-      number_of_items['from'] = 0
-      number_of_items['to']   = 100
+      sort_params['from'] = 0
+      sort_params['to']   = 100
     else
       content_type :json, charset: 'utf-8'
       amounts = params['amounts'].to_i
       page    = params['page'].to_i
-      number_of_items['from'] = page == 0 ? 0 : amounts * page + 1
-      number_of_items['to']   = amounts * page + amounts
+      sort_params['from'] = page == 0 ? 0 : amounts * page + 1
+      sort_params['to']   = amounts * page + amounts
     end
       content_type :json, charset: 'utf-8'
-      data = ServiceItem.show(number_of_items)
+      data = ServiceItem.show_with_uuid_date(sort_params)
       data.to_tl.to_json
   end
 
@@ -25,6 +27,8 @@ class RouterTweet < Sinatra::Base
       params['uuid'] = authorized_user_uuid
       params['content'] = posted_data["tweet"]
       ServiceItem.create(params)
+      content_type :json, charset: 'utf-8'
+      tweet_response
     else
       content_type :json, charset: 'utf-8'
       CONTENT_OVER_140.error_response

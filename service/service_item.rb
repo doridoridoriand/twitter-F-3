@@ -12,6 +12,11 @@ class ServiceItem < Items
     Items.where(id: params['from']..params['to'])
   end
 
+  def self.show_with_uuid_date(params)
+    Items.where(uuid: params['uuid'],
+                id: params['from']..params['to'])
+  end
+
   def self.find_by_uuid_hex(params)
     Items.where(uuid: params['uuid'], hex: params['hex'])
   end
