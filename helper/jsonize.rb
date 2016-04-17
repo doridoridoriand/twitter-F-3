@@ -12,7 +12,7 @@ module Jsonize
     {"error": self}.to_json(root: false)
   end
 
-  def tweet_response
+  def success_response
     {
       "result": true
     }.to_json(root: false)

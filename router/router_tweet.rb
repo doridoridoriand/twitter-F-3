@@ -28,7 +28,7 @@ class RouterTweet < Sinatra::Base
       params['content'] = posted_data["tweet"]
       ServiceItem.create(params)
       content_type :json, charset: 'utf-8'
-      tweet_response
+      success_response
     else
       content_type :json, charset: 'utf-8'
       CONTENT_OVER_140.error_response
