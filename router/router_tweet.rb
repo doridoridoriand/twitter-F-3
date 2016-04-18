@@ -14,6 +14,7 @@ class RouterTweet < Sinatra::Base
       sort_params['to']   = amounts * page + amounts
     end
     user_uuids_which_following = ServiceFollowing.find_by_uuid(authorized_user_uuid)
+    user_uuids_which_following << authorized_user_uuid
     entries = ServiceItem.show_with_uuid(user_uuids_which_following)
     content_type :json, charset: 'utf-8'
     entries.to_tl(sort_params['from'], sort_params['to']).to_json(root: false)
