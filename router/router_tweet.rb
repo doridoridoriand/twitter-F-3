@@ -4,20 +4,19 @@ class RouterTweet < Sinatra::Base
   get '/' do
     authorized_user_area!
     sort_params = {}
-    authorized_user_uuid
     unless params['amounts'] && params['page']
       sort_params['from'] = 0
       sort_params['to']   = 100
     else
-      content_type :json, charset: 'utf-8'
       amounts = params['amounts'].to_i
       page    = params['page'].to_i
       sort_params['from'] = page == 0 ? 0 : amounts * page + 1
       sort_params['to']   = amounts * page + amounts
     end
-      content_type :json, charset: 'utf-8'
-      data = ServiceItem.show_with_uuid_date(sort_params)
-      data.to_tl.to_json
+    user_uuids_which_following = ServiceFollowing.find_by_uuid(authorized_user_uuid)
+    entries = ServiceItem.show_with_uuid(user_uuids_which_following)
+    content_type :json, charset: 'utf-8'
+    entries.to_tl(sort_params['from'], sort_params['to']).to_json(root: false)
   end
 
   post '/tweet' do

@@ -1,7 +1,7 @@
 module Timeline
-  def to_tl
+  def to_tl(from, to)
     hash = Hash.new {|h, k| h[k] = {}}
-    self.each_with_index do |entry, i|
+    self[from..to].each_with_index do |entry, i|
       user_info                  = ServiceUser.find_by_uuid(entry.uuid).first
       hash[i][:user_id]          = user_info.user_id
       hash[i][:screen_name]      = user_info.screen_name

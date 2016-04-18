@@ -14,8 +14,10 @@ class ServiceFollowing < Following
   def self.show(params)
   end
 
+  # @param string
+  # @return array
   def self.find_by_uuid(params)
-    Following.where(uuid: params['uuid'])
+    Following.where(uuid: params).map {|data| data.target_uuid}
   end
 
   # @param hash
