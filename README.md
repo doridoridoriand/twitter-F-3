@@ -146,3 +146,31 @@
 ```:json
 {"error": "message (can use or not)"}
 ```
+
+## POST /user_detail
+**Authorization Header Required**
+[See RFC6750](https://tools.ietf.org/html/rfc6750)
+
+`Authorization: Bearer xxxxxxxxxxxxxxx`
+
+### Request Body
+```:json
+{
+  "user_id": "username"
+}
+```
+
+or
+```:json
+{
+  "token": "xxxxxxxxxxxxxxx"
+}
+```
+
+### Response
+```:json
+{
+    "user_id": "mofmofneko",
+    "screen_name": "もふもふねこ"
+}
+```
