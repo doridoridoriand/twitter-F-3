@@ -24,7 +24,8 @@
 {
   "result": true,
   "data": {
-    "token": "LbQqzSUrrmB1EOg8UpLZ62LxJhgxFdtS"
+    "token": "LbQqzSUrrmB1EOg8UpLZ62LxJhgxFdtS",
+    "screen_name": "あああああ"
   }
 }
 ```
@@ -51,6 +52,7 @@
   "result": true,
   "data": {
     "token": "LbQqzSUrrmB1EOg8UpLZ62LxJhgxFdtS"
+    "screen_name": "あああああ"
   }
 }
 ```
