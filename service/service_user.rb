@@ -30,6 +30,11 @@ class ServiceUser < Users
     Users.where(uuid: uuid)
   end
 
+  def self.find_by_token(token)
+    matched = ServiceUserTokens.find_by_token(token)
+    ServiceUser.find_by_uuid(matched.uuid)
+  end
+
   # @return uuid
   def self.create(params)
     user_uuid = SecureRandom.uuid

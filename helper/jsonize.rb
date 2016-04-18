@@ -17,4 +17,11 @@ module Jsonize
       "result": true
     }.to_json(root: false)
   end
+
+  def user_detail
+    {
+      'user_id': self.user_id,
+      'screen_name': self.screen_name
+    }
+  end
 end

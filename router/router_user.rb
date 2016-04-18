@@ -16,6 +16,18 @@ class RouterUser < Sinatra::Base
     end
   end
 
+  post '/user_detail' do
+    authorized_user_area!
+    posted_data = JSON.parse request.body.read
+    if posted_data['token']
+      content_type :json, charset: 'utf-8'
+      ServiceUser.find_by_token(posted_data['token']).first.user_detail.to_json(root: false)
+    else
+      content_type :json, charset: 'utf-8'
+      ServiceUser.find_by_username(posted_data['user_id']).first.user_detail.to_json(root: false)
+    end
+  end
+
   get '/token_error' do
     content_type :json, charset: 'utf-8'
     TOKEN_BROKEN.error_response
