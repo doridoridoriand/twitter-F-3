@@ -3,7 +3,8 @@ module Jsonize
     {
       "result":true,
       "data": {
-        "token": self
+        "token": self[:token],
+        "screen_name": self[:screen_name]
       }
     }.to_json
   end

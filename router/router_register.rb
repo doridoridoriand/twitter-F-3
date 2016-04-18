@@ -9,8 +9,11 @@ class RouterRegister < Sinatra::Base
     else
       unless ServiceUser.duplicate(posted_data['name'])
         user_token = ServiceUserTokens.create(ServiceUser.create(posted_data))
+        data = {}
+        data[:screen_name] = posted_data['screenName']
+        data[:token]       = user_token
         content_type :json, charset: 'utf-8'
-        user_token.post_response
+        data.post_response
       else
         content_type :json, charset: 'utf-8'
         USER_ID_ALREADY_IN_USE.error_response
