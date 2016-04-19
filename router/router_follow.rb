@@ -5,7 +5,7 @@ class RouterFollow < Sinatra::Base
     posted_data = JSON.parse request.body.read
     hash = {}
     hash['uuid'] = authorized_user_uuid
-    hash['target_uuid'] = ServiceUserTokens.find_by_token(posted_data["target_user_token"]).uuid
+    hash['target_uuid'] = ServiceUser.find_by_username(posted_data['user_id']).first.uuid
     # 既にフォローしていないか重複チェック
     if ServiceFollowing.is_already_followed?(hash)
       content_type :json, charset: 'utf-8'
@@ -22,7 +22,7 @@ class RouterFollow < Sinatra::Base
     posted_data = JSON.parse request.body.read
     hash = {}
     hash['uuid'] = authorized_user_uuid
-    hash['target_uuid'] = ServiceUserTokens.find_by_token(posted_data["target_user_token"]).uuid
+    hash['target_uuid'] = ServiceUser.find_by_username(posted_data['user_id']).first.uuid
     # そもそもフォローしていない場合の対処
     unless ServiceFollowing.is_not_follow_yet?(hash)
       ServiceFollowing.delete(hash)
