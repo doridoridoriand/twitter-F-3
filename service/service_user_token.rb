@@ -6,6 +6,12 @@ class ServiceUserTokens < UserToken
     UserToken.where(token: params).first
   end
 
+  def self.exist?(params)
+    if UserToken.where(token: params).first
+      params
+    end
+  end
+
   def self.create(params)
     user_token = SecureRandom.hex(10)
     UserToken.create(uuid:  params,
@@ -14,5 +20,7 @@ class ServiceUserTokens < UserToken
   end
 
   def self.delete(params)
+    mached_token = UserToken.where(token: params).first
+    mached_token.destroy
   end
 end

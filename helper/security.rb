@@ -15,6 +15,10 @@ module Security
     user_data.uuid
   end
 
+  def authorized_user_token
+    token_from_client
+  end
+
   private
 
   # @param none
@@ -30,6 +34,8 @@ module Security
     result_data
   end
 
+  # 低レイヤーからデーターを引っこ抜いてくるため、private関数とした
+  # @return string
   def token_from_client
     data = request.env.select { |k, v| k.start_with?('HTTP_AU')}
     data.values.split(' ').to_a.flatten.first.split(' ').last

@@ -9,6 +9,7 @@ $: << File.expand_path(File.join(__FILE__, '..', 'router'))
 require 'router_follow'
 require 'router_register'
 require 'router_login'
+require 'router_logout'
 require 'router_search'
 require 'router_tweet'
 require 'router_user'
@@ -22,6 +23,7 @@ class ApiFront < Sinatra::Base
   use RouterFollow
   use RouterRegister
   use RouterLogin
+  use RouterLogout
   use RouterSearch
   use RouterTweet
   use RouterUser
