@@ -11,7 +11,12 @@ class ServiceFollowing < Following
     target.destroy
   end
 
+  def self.show_uuids(params)
+    self.show(params).map {|entry| entry.target_uuid}
+  end
+
   def self.show(params)
+    Following.where(uuid: params)
   end
 
   # @param string

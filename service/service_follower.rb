@@ -1,16 +1,11 @@
-class ServiceFollower < Follower
+# フォローフォロワーに関してDBを統一したため、このクラスはFollowingを継承している
+class ServiceFollower < Following
 
-  def self.create(params)
-    if ServiceUser.exist?(params)
-      Follower.create(uuid:        params['uuid'],
-                      target_uuid: params['target_uuid'])
-    end
+  def self.show_uuids(params)
+    self.show(params).map {|entry| entry.uuid}
   end
 
-  def self.delete(params)
-    if ServiceUser.exist?(params)
-      Follower.delete(uuid:        params['uuid'],
-                      target_uuid: params['target_uuid'])
-    end
+  def self.show(params)
+    Following.where(target_uuid: params)
   end
 end
