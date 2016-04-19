@@ -244,3 +244,26 @@ or
   }
 ]
 ```
+
+## GET /:user_id/with_recipes
+URL example
+`/mofmofneko/with_recipes`
+
+### Response
+#### User exist
+```:json
+[
+  {
+    "user_id": "Pasos2",
+    "screen_name": "パソス",
+    "content": "へい！",
+    "tweet_detail_url": "http://192.168.33.10/527787da-e54b-4afb-8583-d603557f5679/7f87709bafdc71b63735",
+    "created_at": "2016-04-16T16:38:27.000Z"
+  }
+]
+```
+
+#### User cannot found
+```:json
+{"error": "指定したユーザーは存在しませんでした"}
+```
