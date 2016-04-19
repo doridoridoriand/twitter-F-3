@@ -18,6 +18,18 @@ class ServiceItem < Items
     Items.where(uuid: params)
   end
 
+  # @param hash
+  # @return array
+  # TODO: DBに負担かかる書き方しているので要修正
+  def self.exist?(params)
+    if self.find_by_uuid_hex(params)
+      self.find_by_uuid_hex(params)
+    else
+      false
+    end
+  end
+
+  # 現在未使用だけど、このメソッドの実装は不完全
   def self.show_with_uuid_date(params)
     Items.where(uuid: params['uuid'],
                 id: params['from']..params['to'])
@@ -29,6 +41,8 @@ class ServiceItem < Items
   end
 
   def self.find_by_uuid_hex(params)
-    Items.where(uuid: params['uuid'], hex: params['hex'])
+    params['uuid'] = params['owner_uuid']
+    params['hex'] = params['entry_hex']
+    Items.where(uuid: params['uuid'], hex: params['hex']).first
   end
 end

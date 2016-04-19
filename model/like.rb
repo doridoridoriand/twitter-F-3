@@ -1,2 +1,2 @@
-class Like < ActiveRecord::Base
+class Likes < ActiveRecord::Base
 end

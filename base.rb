@@ -16,6 +16,7 @@ require 'user'
 require 'user_token'
 require 'follower'
 require 'following'
+require 'like'
 
 # load service
 $: << File.expand_path(File.join(__FILE__, '..', 'service'))
@@ -24,6 +25,7 @@ require 'service_user'
 require 'service_user_token'
 require 'service_follower'
 require 'service_following'
+require 'service_like'
 
 # load helper
 $: << File.expand_path(File.join(__FILE__, '..', 'helper'))

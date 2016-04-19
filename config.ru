@@ -13,6 +13,7 @@ require 'router_logout'
 require 'router_search'
 require 'router_tweet'
 require 'router_user'
+require 'router_like'
 
 class ApiFront < Sinatra::Base
   configure do
@@ -27,6 +28,7 @@ class ApiFront < Sinatra::Base
   use RouterSearch
   use RouterTweet
   use RouterUser
+  use RouterLike
 
 end
 
