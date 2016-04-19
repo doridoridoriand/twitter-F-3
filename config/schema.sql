@@ -40,3 +40,14 @@ create table teamf_twitter.items (
   `updated_at` timestamp     not null default current_timestamp on update current_timestamp,
   primary key(`id`)
 ) engine=InnoDB default charset=utf8;
+
+create table teamf_twitter.likes (
+  `id`         int(30)      unsigned not null auto_increment,
+  `liker_uuid` varchar(255) not null,
+  `owner_uuid` varchar(255) not null,
+  `entry_hex`  varchar(255) not null,
+  primary key(`id`)
+) engine=InnoDB default charset=utf8;
+
+create table teamf_twitter.retweets (
+)

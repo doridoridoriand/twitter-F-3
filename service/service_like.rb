@@ -1,0 +1,2 @@
+class ServiceLike < Like
+end
