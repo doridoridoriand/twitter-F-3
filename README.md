@@ -201,3 +201,46 @@ or
     "screen_name": "もふもふねこ"
 }
 ```
+
+## POST /logout
+**Authorization Header Required**
+[See RFC6750](https://tools.ietf.org/html/rfc6750)
+
+`Authorization: Bearer xxxxxxxxxxxxxxx`
+
+### Response
+```:json
+{"result": true}
+```
+
+## GET /following
+**Authorization Header Required**
+[See RFC6750](https://tools.ietf.org/html/rfc6750)
+
+`Authorization: Bearer xxxxxxxxxxxxxxx`
+
+### Response
+```:json
+[
+  {
+      "user_id": "mofmofneko",
+      "screen_name": "もふもふねこ"
+  }
+]
+```
+
+## GET /followers
+**Authorization Header Required**
+[See RFC6750](https://tools.ietf.org/html/rfc6750)
+
+`Authorization: Bearer xxxxxxxxxxxxxxx`
+
+### Response
+```:json
+[
+  {
+      "user_id": "mofmofneko",
+      "screen_name": "もふもふねこ"
+  }
+]
+```
