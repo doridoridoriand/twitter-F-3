@@ -8,6 +8,31 @@
 
 # webAPI Endpoints and Specification
 
+## GET /
+**Authorization Header Required**
+[See RFC6750](https://tools.ietf.org/html/rfc6750)
+
+`Authorization: Bearer xxxxxxxxxxxxxxx`
+
+### Response
+#### Token Verificated
+```:json
+[
+  {
+    "user_id": "Pasos2",
+    "screen_name": "パソス",
+    "content": "へい！",
+    "tweet_detail_url": "http://192.168.33.10/527787da-e54b-4afb-8583-d603557f5679/7f87709bafdc71b63735",
+    "created_at": "2016-04-16T16:38:27.000Z"
+  }
+]
+
+```
+#### Token Broken
+```:json
+{"error": "ユーザートークンが不正です"}
+```
+
 ## POST /register
 ### Request Body
 ```:json
