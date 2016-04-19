@@ -122,7 +122,7 @@
 ### Request Body
 ```:json
 {
-  "target_user_token": "xxxxxxxxxxxxxxx"
+  "user_id": "xxxxxxxxxxxxxxx"
 }
 ```
 
@@ -146,7 +146,7 @@
 ### Request Body
 ```:json
 {
-  "target_user_token": "xxxxxxxxxxxxxxx"
+  "user_id": "xxxxxxxxxxxxxxx"
 }
 ```
 
