@@ -23,7 +23,7 @@ class ServiceUser < Users
   end
 
   def self.find_by_username(username)
-    Users.where(user_id: username).first
+    Users.where(user_id: username)
   end
 
   def self.find_by_uuid(uuid)

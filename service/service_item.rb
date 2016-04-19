@@ -24,7 +24,7 @@ class ServiceItem < Items
   end
 
   def self.find_by_username(params)
-    user_detail = ServiceUser.find_by_username(params)
+    user_detail = ServiceUser.find_by_username(params).first
     self.show_with_uuid(user_detail.uuid)
   end
 
