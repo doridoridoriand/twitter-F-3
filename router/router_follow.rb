@@ -34,18 +34,16 @@ class RouterFollow < Sinatra::Base
     end
   end
 
-  get '/following' do
-    authorized_user_area!
-    users_which_now_following = ServiceFollowing.show_uuids(authorized_user_uuid)
+  get '/:user_id/following' do
+    users_which_now_following = ServiceFollowing.show_uuids(ServiceUser.find_by_username(params[:user_id]).first.uuid)
     content_type :json, charset: 'utf-8'
     ServiceUser.find_by_uuid(users_which_now_following)
                .map{|entry| entry.user_detail}
                .to_json(root: false)
   end
 
-  get '/followers' do
-    authorized_user_area!
-    users_which_now_follower = ServiceFollower.show_uuids(authorized_user_uuid)
+  get '/:user_id/followers' do
+    users_which_now_follower = ServiceFollower.show_uuids(ServiceUser.find_by_username(params[:user_id]).first.uuid)
     content_type :json, charset: 'utf-8'
     ServiceUser.find_by_uuid(users_which_now_follower)
                .map{|entry| entry.user_detail}
