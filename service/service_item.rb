@@ -23,6 +23,11 @@ class ServiceItem < Items
                 id: params['from']..params['to'])
   end
 
+  def self.find_by_username(params)
+    user_detail = ServiceUser.find_by_username(params)
+    self.show_with_uuid(user_detail.uuid)
+  end
+
   def self.find_by_uuid_hex(params)
     Items.where(uuid: params['uuid'], hex: params['hex'])
   end

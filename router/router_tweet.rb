@@ -35,6 +35,16 @@ class RouterTweet < Sinatra::Base
     end
   end
 
+  get '/:user_id/with_recipes' do
+    if ServiceUser.exist?(params[:user_id])
+      content_type :json, charset: 'utf-8'
+      ServiceItem.find_by_username(params[:user_id]).to_json(root: false)
+    else
+      content_type :json, charset: 'utf-8'
+      USER_NOT_FOUND.error_response
+    end
+  end
+
   get '/:uuid/:hex' do
     data = ServiceItem.find_by_uuid_hex(params)
     content_type :json, charset: 'utf-8'
