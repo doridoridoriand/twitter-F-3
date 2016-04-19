@@ -267,3 +267,59 @@ URL example
 ```:json
 {"error": "指定したユーザーは存在しませんでした"}
 ```
+
+## POST /like
+**Authorization Header Required**
+[See RFC6750](https://tools.ietf.org/html/rfc6750)
+
+`Authorization: Bearer xxxxxxxxxxxxxxx`
+
+### Request
+```:json
+{
+    "owner_uuid": "76a5138b-af95-4d00-81be-7001981caf8d",
+    "entry_hex":  "4c8f9ea9d2d082d377c1"
+}
+```
+
+### Response
+#### Like Succeed
+```:json
+{"result": true}
+```
+
+#### Like Fail
+```:json
+{"error": "指定したツイートは既に削除されているか、非公開にされているため表示できませんでした"}
+```
+
+or
+
+```:json
+{"error": "指定したツイートは既にLikeしています"}
+```
+
+## POST /unlike
+**Authorization Header Required**
+[See RFC6750](https://tools.ietf.org/html/rfc6750)
+
+`Authorization: Bearer xxxxxxxxxxxxxxx`
+
+### Request
+```:json
+{
+    "owner_uuid": "76a5138b-af95-4d00-81be-7001981caf8d",
+    "entry_hex":  "4c8f9ea9d2d082d377c1"
+}
+```
+
+### Response
+#### Unlike Succeed
+```:json
+{"result": true}
+```
+
+#### Unlike Fail
+```:json
+{"error": "指定したツイートはまだlikeしていません"}
+```
