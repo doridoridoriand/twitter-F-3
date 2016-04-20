@@ -4,6 +4,9 @@ class ServiceLike < Likes
   # @param hash
   # @return boolean
   def self.duplicate(params)
+    if params['unliker_uuid']
+      params['liker_uuid'] = params['unliker_uuid']
+    end
     if Likes.where(liker_uuid: params['liker_uuid'],
                   owner_uuid: params['owner_uuid'],
                   entry_hex:  params['entry_hex']).first
