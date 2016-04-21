@@ -14,4 +14,14 @@ module Validator
     false
   end
 
+  def only_character
+    match = Regexp.new(/^[a-zA-Z0-9]+$/)
+    result = match =~ self
+    if result === 0
+      true
+    elsif result = nil
+      false
+    end
+  end
+
 end
