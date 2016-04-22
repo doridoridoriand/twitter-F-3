@@ -5,6 +5,7 @@ create table teamf_twitter.users (
   `uuid`          varchar(768)  not null,
   `user_id`       varchar(255)  not null,
   `screen_name`   varchar(255)  not null default 'no name',
+  `user_icon`     varchar(255)  not null,
   `password_hash` varchar(1024) not null,
   `password_salt` varchar(1024) not null,
   primary key(`id`)
@@ -18,26 +19,28 @@ create table teamf_twitter.user_tokens (
 ) engine=InnoDB default charset=utf8;
 
 create table teamf_twitter.followings (
-  `id`  int(30) unsigned not null auto_increment,
-  `uuid` varchar(255) not null,
+  `id`          int(30)      unsigned not null auto_increment,
+  `uuid`        varchar(255) not null,
   `target_uuid` varchar(255) not null,
   primary key(`id`)
 ) engine=InnoDB default charset=utf8;
 
 create table teamf_twitter.followers (
-  `id`  int(30) unsigned not null auto_increment,
-  `uuid` varchar(255) not null,
+  `id`          int(30)      unsigned not null auto_increment,
+  `uuid`        varchar(255) not null,
   `target_uuid` varchar(255) not null,
   primary key(`id`)
 ) engine=InnoDB default charset=utf8;
 
 create table teamf_twitter.items (
-  `id`         int(30)       unsigned not null auto_increment,
-  `uuid`       varchar(255)  not null,
-  `hex`        varchar(255)  not null,
-  `content`    varchar(255)  not null,
-  `created_at` timestamp     not null default 0,
-  `updated_at` timestamp     not null default current_timestamp on update current_timestamp,
+  `id`            int(30)      unsigned not null auto_increment,
+  `uuid`          varchar(255) not null,
+  `hex`           varchar(255) not null,
+  `content`       varchar(255) not null,
+  `like_count`    int(20)      not null,
+  `retweet_count` int(20)      not null,
+  `created_at`    timestamp    not null default 0,
+  `updated_at`    timestamp    not null default current_timestamp on update current_timestamp,
   primary key(`id`)
 ) engine=InnoDB default charset=utf8;
 
