@@ -16,6 +16,10 @@ class ServiceUser < Users
     end
   end
 
+  def self.show(params)
+    Users.where(id: params['from']..params['to'])
+  end
+
   def self.exist?(user)
     if Users.where(user_id: user).first
       user
