@@ -3,6 +3,7 @@ module Timeline
     hash = Hash.new {|h, k| h[k] = {}}
     self[from..to].each_with_index do |entry, i|
       user_info                  = ServiceUser.find_by_uuid(entry.uuid).first
+      hash[i][:user_icon]        = 'https://s3-ap-northeast-1.amazonaws.com/teamf-mofmofneko/VqP3mcWa.png'
       hash[i][:user_id]          = user_info.user_id
       hash[i][:screen_name]      = user_info.screen_name
       hash[i][:uuid]             = user_info.uuid

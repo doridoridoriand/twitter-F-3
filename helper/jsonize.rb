@@ -22,7 +22,8 @@ module Jsonize
   def user_detail
     {
       'user_id': self.user_id,
-      'screen_name': self.screen_name
+      'screen_name': self.screen_name,
+      'user_icon': "https://s3-ap-northeast-1.amazonaws.com/teamf-mofmofneko/VqP3mcWa.png"
     }
   end
 end
