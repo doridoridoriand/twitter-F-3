@@ -19,6 +19,7 @@
 ```:json
 [
   {
+    "user_icon": "https://s3-ap-northeast-1.amazonaws.com/teamf-mofmofneko/VqP3mcWa.png",
     "user_id": "Pasos2",
     "screen_name": "パソス",
     "content": "へい！",
@@ -254,6 +255,7 @@ URL example
 ```:json
 [
   {
+    "user_icon": "https://s3-ap-northeast-1.amazonaws.com/teamf-mofmofneko/VqP3mcWa.png",
     "user_id": "Pasos2",
     "screen_name": "パソス",
     "content": "へい！",
