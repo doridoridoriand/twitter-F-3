@@ -9,9 +9,9 @@ module Timeline
       hash[i][:uuid]             = user_info.uuid
       hash[i][:hex]              = entry.hex
       hash[i][:content]          = entry.content
-      hash[i][:tweet_detail_url] = "#{ROOT_URL}/#{entry.uuid}/#{entry.hex}",
-      hash[i][:like_count]       = entry.like_count,
-      hash[i][:retweet_count]    = entry.retweet_count,
+      hash[i][:tweet_detail_url] = "#{ROOT_URL}/#{entry.uuid}/#{entry.hex}"
+      hash[i][:like_count]       = entry.like_count
+      hash[i][:retweet_count]    = entry.retweet_count
       hash[i][:created_at]       = entry.created_at
     end
     hash.values
