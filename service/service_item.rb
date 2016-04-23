@@ -9,13 +9,13 @@ class ServiceItem < Items
   end
 
   def self.show(params)
-    Items.where(id: params['from']..params['to'])
+    Items.where(id: params['from']..params['to']).order('created_at desc')
   end
 
   # @param array
   # @return array
   def self.show_with_uuid(params)
-    Items.where(uuid: params)
+    Items.where(uuid: params).order('created_at desc')
   end
 
   # @param hash
