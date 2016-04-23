@@ -14,18 +14,22 @@ $: << File.expand_path(File.join(__FILE__, '..', 'model'))
 require 'item'
 require 'user'
 require 'user_token'
+require 'user_recommend'
 require 'follower'
 require 'following'
 require 'like'
+require 'notification'
 
 # load service
 $: << File.expand_path(File.join(__FILE__, '..', 'service'))
 require 'service_item'
 require 'service_user'
 require 'service_user_token'
+require 'service_user_recommend'
 require 'service_follower'
 require 'service_following'
 require 'service_like'
+require 'service_notification'
 
 # load helper
 $: << File.expand_path(File.join(__FILE__, '..', 'helper'))
