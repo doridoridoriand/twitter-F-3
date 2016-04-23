@@ -53,4 +53,15 @@ create table teamf_twitter.likes (
 ) engine=InnoDB default charset=utf8;
 
 create table teamf_twitter.retweets (
-)
+) engine=InnoDB default charset=utf8;
+
+create table teamf_twitter.notifications (
+  `id`           int(30)      unsigned not null auto_increment,
+  `uuid`         varchar(255) not null,
+  `entry_uuid`   varchar(255) not null,
+  `entry_hex`    varchar(255) not null,
+  `like_flag`    boolean      not null default 0,
+  `retweet_flag` boolean      not null default 0,
+  `reply_flag`   boolean      not null default 0,
+  primary key(`id`)
+) engine=InnoDB default charset=utf8;
