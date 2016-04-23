@@ -6,6 +6,7 @@ class RouterLike < Sinatra::Base
     posted_data['liker_uuid'] = authorized_user_uuid
     if ServiceItem.exist?(posted_data)
       unless ServiceLike.duplicate(posted_data)
+        ServiceLike.increment(posted_data)
         ServiceLike.create(posted_data)
         content_type :json, charset: 'utf-8'
         success_response
@@ -24,6 +25,7 @@ class RouterLike < Sinatra::Base
     posted_data = JSON.parse request.body.read
     posted_data['unliker_uuid'] = authorized_user_uuid
     if ServiceLike.exist?(posted_data)
+      ServiceLike.decrement(posted_data)
       ServiceLike.delete(posted_data)
       content_type :json, charset: 'utf-8'
       success_response
