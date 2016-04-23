@@ -19,7 +19,7 @@ module Validator
     result = match =~ self
     if result === 0
       true
-    elsif result = nil
+    elsif result == nil
       false
     end
   end
