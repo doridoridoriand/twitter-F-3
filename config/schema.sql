@@ -63,6 +63,7 @@ create table teamf_twitter.notifications (
   `like_flag`    boolean      not null default 0,
   `retweet_flag` boolean      not null default 0,
   `reply_flag`   boolean      not null default 0,
+  `created_at`   timestamp    not null default current_timestamp
   primary key(`id`)
 ) engine=InnoDB default charset=utf8;
 
