@@ -37,8 +37,8 @@ create table teamf_twitter.items (
   `uuid`          varchar(255) not null,
   `hex`           varchar(255) not null,
   `content`       varchar(255) not null,
-  `like_count`    int(20)      not null,
-  `retweet_count` int(20)      not null,
+  `like_count`    int(20)      not null default 0,
+  `retweet_count` int(20)      not null default 0,
   `created_at`    timestamp    not null default 0,
   `updated_at`    timestamp    not null default current_timestamp on update current_timestamp,
   primary key(`id`)
