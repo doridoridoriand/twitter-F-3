@@ -66,8 +66,11 @@ create table teamf_twitter.notifications (
   primary key(`id`)
 ) engine=InnoDB default charset=utf8;
 
-create table teamf_twitter.reccomend_users (
-  `id`   int(20)      unsigned not null auto_increment,
-  `uuid` varchar(255) not null,
+create table teamf_twitter.recommend_users (
+  `id`            int(30)       unsigned not null auto_increment,
+  `uuid`          varchar(768)  not null,
+  `user_id`       varchar(255)  not null,
+  `screen_name`   varchar(255)  not null default 'no name',
+  `user_icon`     varchar(255)  not null,
   primary key(`id`)
 ) engine=InnoDB default charset=utf8;
