@@ -16,4 +16,19 @@ module Timeline
     end
     hash.values
   end
+
+  # ツイート内容の先頭が@で始まっており、かつそれ以降の文字列がuser_id(バリデーションに準拠する形だったときのみ)trueを返す
+  # @return boolean
+  def is_reply?
+    matcher = Regexp.new(ALPHABET_INTEGER_MATCHER)
+    if self.slice(0) == '@' && self.to_user_id =~ matcher
+      true
+    else
+      false
+    end
+  end
+
+  def to_user_id
+    self.split(' ').first.delete('@')
+  end
 end
