@@ -1,11 +1,13 @@
 class ServiceItem < Items
 
   def self.create(params)
+    entry_hex = SecureRandom.hex(10)
     new_item = Items.new(uuid: params['uuid'],
-                         hex:  SecureRandom.hex(10),
+                         hex:  entry_hex,
                          content: params['content'],
                          created_at: Time.now)
     new_item.save
+    entry_hex
   end
 
   def self.show(params)
