@@ -15,4 +15,6 @@ module Constants
   TWEET_NOT_LIKE_YET            = '指定したツイートはまだlikeしていません'
 
   ROOT_URL                      = 'http://192.168.33.10'
+
+  ALPHABET_INTEGER_MATCHER      = /^[a-zA-Z0-9]+$/
 end
