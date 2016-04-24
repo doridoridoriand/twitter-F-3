@@ -1,0 +1,2 @@
+class ServiceNotification < Notification
+end
