@@ -325,3 +325,20 @@ or
 ```:json
 {"error": "指定したツイートはまだlikeしていません"}
 ```
+
+## GET /recommend_users
+### Response
+```:json
+[
+  {
+    user_id: "Romolo_4012",
+    screen_name: "ロモロ-4012",
+    user_icon: "https://s3-ap-northeast-1.amazonaws.com/teamf-mofmofneko/VqP3mcWa.png"
+  },
+  {
+    user_id: "Sun_Won_15720",
+    screen_name: "スノン-15720",
+    user_icon: "https://s3-ap-northeast-1.amazonaws.com/teamf-mofmofneko/VqP3mcWa.png"
+  }
+]
+```
