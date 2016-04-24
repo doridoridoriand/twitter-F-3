@@ -24,9 +24,22 @@ class RouterTweet < Sinatra::Base
     authorized_user_area!
     posted_data = JSON.parse request.body.read
     if posted_data["tweet"].less_than_140?
-      params['uuid'] = authorized_user_uuid
-      params['content'] = posted_data["tweet"]
-      ServiceItem.create(params)
+      params['uuid']      = authorized_user_uuid
+      params['content']   = posted_data["tweet"]
+      params['entry_hex'] = ServiceItem.create(params)
+      if posted_data["tweet"].is_reply?
+        # 通知を表示させる対象のuuid
+        if ServiceUser.exist?(posted_data['tweet'].to_user_id)
+          target_user_uuid = ServiceUser.find_by_username(posted_data["tweet"].to_user_id).first.uuid
+        end
+        # !!!! 他のメソッドとの互換性のために変数を状態を大きく変えている。注意 !!!!
+        # !!!! ServiceItemがエントリーを記録するまでServiceNotificationを走らせてはいけない !!!!
+        # !!!! 時間あったらリファクタリングしたい。。。こんな汚いコードつらい(影響範囲掴めてないのでとりあえずこのまま) !!!!
+        params['entry_uuid'] = params['uuid']
+        params['uuid']       = target_user_uuid
+        params['reply_flag'] = 1
+        ServiceNotification.create(params)
+      end
       content_type :json, charset: 'utf-8'
       success_response
     else
