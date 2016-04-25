@@ -331,14 +331,56 @@ or
 ```:json
 [
   {
-    user_id: "Romolo_4012",
+    user_id: "Romolo4012",
     screen_name: "ロモロ-4012",
     user_icon: "https://s3-ap-northeast-1.amazonaws.com/teamf-mofmofneko/VqP3mcWa.png"
   },
   {
-    user_id: "Sun_Won_15720",
+    user_id: "SunWon15720",
     screen_name: "スノン-15720",
     user_icon: "https://s3-ap-northeast-1.amazonaws.com/teamf-mofmofneko/VqP3mcWa.png"
+  }
+]
+```
+
+## GET /notification
+**Authorization Header Required**
+[See RFC6750](https://tools.ietf.org/html/rfc6750)
+
+`Authorization: Bearer xxxxxxxxxxxxxxx`
+
+### Response
+```:json
+[
+  {
+    "like_flag": false,
+    "retweet_flag": false,
+    "reply_flag": true,
+    "content": {
+      "id": 19400,
+      "uuid": "f706623b-9e6b-4542-86d1-684afd71f5c5",
+      "hex": "2080b5af24cc85ac9766",
+      "content": "@mofmofneko リプライとして届くかしら？？",
+      "created_at": "2016-04-25T06:31:25.000Z",
+      "updated_at": "2016-04-25T06:31:25.000Z",
+      "like_count": 0,
+      "retweet_count": 0
+    }
+  },
+  {
+    "like_flag": true,
+    "retweet_flag": false,
+    "reply_flag": false,
+    "content": {
+      "id": 19404,
+      "uuid": "6a52f162-3df0-41d1-9106-b405802fc012",
+      "hex": "82944049a26ce959d88d",
+      "content": "ぼくはもふもふ猫！！！！！！",
+      "created_at": "2016-04-25T06:34:22.000Z",
+      "updated_at": "2016-04-25T07:03:23.000Z",
+      "like_count": 0,
+      "retweet_count": 0
+    }
   }
 ]
 ```
