@@ -27,6 +27,7 @@ module Timeline
       hash[i][:like_flag] = entry.like_flag
       hash[i][:retweet_flag] = entry.retweet_flag
       hash[i][:reply_flag] = entry.reply_flag
+      hash[i][:servant] = ServiceUser.find_by_uuid(entry.attacker_uuid).first.user_detail
       hash[i][:content] = entry_info
     end
     hash.values
