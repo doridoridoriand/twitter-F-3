@@ -5,7 +5,7 @@ create table teamf_twitter.users (
   `uuid`          varchar(768)  not null,
   `user_id`       varchar(255)  not null,
   `screen_name`   varchar(255)  not null default 'no name',
-  `user_icon`     varchar(255)  not null,
+  `user_icon`     varchar(255)  not null default 'none',
   `password_hash` varchar(1024) not null,
   `password_salt` varchar(1024) not null,
   primary key(`id`)
