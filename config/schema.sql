@@ -5,7 +5,7 @@ create table teamf_twitter.users (
   `uuid`          varchar(768)  not null,
   `user_id`       varchar(255)  not null,
   `screen_name`   varchar(255)  not null default 'no name',
-  `user_icon`     varchar(255)  not null,
+  `user_icon`     varchar(255)  not null default 'none',
   `password_hash` varchar(1024) not null,
   `password_salt` varchar(1024) not null,
   primary key(`id`)
@@ -56,14 +56,15 @@ create table teamf_twitter.retweets (
 ) engine=InnoDB default charset=utf8;
 
 create table teamf_twitter.notifications (
-  `id`           int(30)      unsigned not null auto_increment,
-  `uuid`         varchar(255) not null,
-  `entry_uuid`   varchar(255) not null,
-  `entry_hex`    varchar(255) not null,
-  `like_flag`    boolean      not null default 0,
-  `retweet_flag` boolean      not null default 0,
-  `reply_flag`   boolean      not null default 0,
-  `created_at`   timestamp    not null default current_timestamp
+  `id`            int(30)      unsigned not null auto_increment,
+  `uuid`          varchar(255) not null,
+  `entry_uuid`    varchar(255) not null,
+  `entry_hex`     varchar(255) not null,
+  `attacker_uuid` varchar(255) not null,
+  `like_flag`     boolean      not null default 0,
+  `retweet_flag`  boolean      not null default 0,
+  `reply_flag`    boolean      not null default 0,
+  `created_at`    timestamp    not null default current_timestamp,
   primary key(`id`)
 ) engine=InnoDB default charset=utf8;
 
