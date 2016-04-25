@@ -35,9 +35,10 @@ class RouterTweet < Sinatra::Base
         # !!!! 他のメソッドとの互換性のために変数を状態を大きく変えている。注意 !!!!
         # !!!! ServiceItemがエントリーを記録するまでServiceNotificationを走らせてはいけない !!!!
         # !!!! 時間あったらリファクタリングしたい。。。こんな汚いコードつらい(影響範囲掴めてないのでとりあえずこのまま) !!!!
-        params['entry_uuid'] = params['uuid']
-        params['uuid']       = target_user_uuid
-        params['reply_flag'] = 1
+        params['entry_uuid']    = params['uuid']
+        params['uuid']          = target_user_uuid
+        params['attacker_uuid'] = params['entry_uuid']
+        params['reply_flag']    = 1
         ServiceNotification.create(params)
       end
       content_type :json, charset: 'utf-8'
