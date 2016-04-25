@@ -14,11 +14,13 @@ require 'router_search'
 require 'router_tweet'
 require 'router_user'
 require 'router_like'
+require 'router_recommend'
 
 class ApiFront < Sinatra::Base
   configure do
     set :environment, :production
     set :port, 3000
+    set :protection, :accept => :frame_options
   end
 
   use RouterFollow
@@ -29,6 +31,7 @@ class ApiFront < Sinatra::Base
   use RouterTweet
   use RouterUser
   use RouterLike
+  use RouterRecommend
 
 end
 
