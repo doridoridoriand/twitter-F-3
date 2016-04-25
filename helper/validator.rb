@@ -15,7 +15,7 @@ module Validator
   end
 
   def only_character
-    match = Regexp.new(/^[a-zA-Z0-9]+$/)
+    match = Regexp.new(ALPHABET_INTEGER_MATCHER)
     result = match =~ self
     if result === 0
       true

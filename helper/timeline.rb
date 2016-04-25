@@ -16,4 +16,34 @@ module Timeline
     end
     hash.values
   end
+
+  def to_notify_tl
+    hash = Hash.new {|h, k| h[k] = {}}
+    self.each_with_index do |entry, i|
+      entry_identify = {}
+      entry_identify['uuid'] = entry.entry_uuid
+      entry_identify['hex']  = entry.entry_hex
+      entry_info = ServiceItem.find_by_uuid_hex(entry_identify)
+      hash[i][:like_flag] = entry.like_flag
+      hash[i][:retweet_flag] = entry.retweet_flag
+      hash[i][:reply_flag] = entry.reply_flag
+      hash[i][:content] = entry_info
+    end
+    hash.values
+  end
+
+  # ツイート内容の先頭が@で始まっており、かつそれ以降の文字列がuser_id(バリデーションに準拠する形だったときのみ)trueを返す
+  # @return boolean
+  def is_reply?
+    matcher = Regexp.new(ALPHABET_INTEGER_MATCHER)
+    if self.slice(0) == '@' && self.to_user_id =~ matcher
+      true
+    else
+      false
+    end
+  end
+
+  def to_user_id
+    self.split(' ').first.delete('@')
+  end
 end

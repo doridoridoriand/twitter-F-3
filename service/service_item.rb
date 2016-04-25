@@ -1,11 +1,13 @@
 class ServiceItem < Items
 
   def self.create(params)
+    entry_hex = SecureRandom.hex(10)
     new_item = Items.new(uuid: params['uuid'],
-                         hex:  SecureRandom.hex(10),
+                         hex:  entry_hex,
                          content: params['content'],
                          created_at: Time.now)
     new_item.save
+    entry_hex
   end
 
   def self.show(params)
@@ -41,8 +43,10 @@ class ServiceItem < Items
   end
 
   def self.find_by_uuid_hex(params)
-    params['uuid'] = params['owner_uuid']
-    params['hex'] = params['entry_hex']
+    if params['owner_uuid'] && params['entry_hex']
+      params['uuid'] = params['owner_uuid']
+      params['hex'] = params['entry_hex']
+    end
     Items.where(uuid: params['uuid'], hex: params['hex']).first
   end
 end
