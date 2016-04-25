@@ -32,8 +32,8 @@ class ServiceItem < Items
   end
 
   # 現在未使用だけど、このメソッドの実装は不完全
-  def self.show_with_uuid_date(params)
-    Items.where(uuid: params['uuid'],
+  def self.show_with_uuid_date(uuids, params)
+    Items.where(uuid: uuids,
                 id: params['from']..params['to'])
   end
 

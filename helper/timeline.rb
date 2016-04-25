@@ -33,6 +33,12 @@ module Timeline
     hash.values
   end
 
+  def to_user_defined_tl
+    user_uuids_which_following = ServiceFollowing.find_by_uuid(self)
+    user_uuids_which_following << self
+    ServiceItem.show_with_uuid(user_uuids_which_following)
+  end
+
   # ツイート内容の先頭が@で始まっており、かつそれ以降の文字列がuser_id(バリデーションに準拠する形だったときのみ)trueを返す
   # @return boolean
   def is_reply?
