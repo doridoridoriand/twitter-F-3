@@ -21,6 +21,7 @@ class ApiFront < Sinatra::Base
   configure do
     set :environment, :production
     set :port, 3000
+    set :protection, :accept => :frame_options
   end
 
   use RouterFollow
