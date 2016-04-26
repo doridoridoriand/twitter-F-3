@@ -16,4 +16,48 @@ module Timeline
     end
     hash.values
   end
+
+  def to_notify_tl
+    hash = Hash.new {|h, k| h[k] = {}}
+    self.each_with_index do |entry, i|
+      entry_identify = {}
+      entry_identify['uuid']            = entry.entry_uuid
+      entry_identify['hex']             = entry.entry_hex
+      entry_info                        = ServiceItem.find_by_uuid_hex(entry_identify)
+      hash[i][:like_flag]               = entry.like_flag
+      hash[i][:retweet_flag]            = entry.retweet_flag
+      hash[i][:reply_flag]              = entry.reply_flag
+      hash[i][:notification_created_at] = entry.created_at
+      hash[i][:servant]                 = ServiceUser.find_by_uuid(entry.attacker_uuid).first.user_detail
+      hash[i][:content]                 = entry_info
+    end
+    hash.values
+  end
+
+  def to_user_defined_tl
+    user_uuids_which_following = ServiceFollowing.find_by_uuid(self)
+    user_uuids_which_following << self
+    ServiceItem.show_with_uuid(user_uuids_which_following)
+  end
+
+  def to_latest_user_defined_tl
+    user_uuids_which_following = ServiceFollowing.find_by_uuid(self['uuid'])
+    user_uuids_which_following << self['uuid']
+    ServiceItem.show_with_uuid_date(user_uuids_which_following, self)
+  end
+
+  # ツイート内容の先頭が@で始まっており、かつそれ以降の文字列がuser_id(バリデーションに準拠する形だったときのみ)trueを返す
+  # @return boolean
+  def is_reply?
+    matcher = Regexp.new(ALPHABET_INTEGER_MATCHER)
+    if self.slice(0) == '@' && self.to_user_id =~ matcher
+      true
+    else
+      false
+    end
+  end
+
+  def to_user_id
+    self.split(' ').first.delete('@')
+  end
 end
