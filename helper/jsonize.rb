@@ -19,6 +19,12 @@ module Jsonize
     }.to_json(root: false)
   end
 
+  def fail_response
+    {
+      "result": false
+    }.to_json(root: false)
+  end
+
   def user_detail
     {
       'user_id': self.user_id,
