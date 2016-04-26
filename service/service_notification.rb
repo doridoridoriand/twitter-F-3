@@ -20,6 +20,6 @@ class ServiceNotification < Notification
   end
 
   def self.find_by_uuid(params)
-    Notification.where(uuid: params)
+    Notification.where(uuid: params).order('created_at desc')
   end
 end
