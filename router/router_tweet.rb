@@ -13,11 +13,28 @@ class RouterTweet < Sinatra::Base
       sort_params['from'] = page == 0 ? 0 : amounts * page + 1
       sort_params['to']   = amounts * page + amounts
     end
-    user_uuids_which_following = ServiceFollowing.find_by_uuid(authorized_user_uuid)
-    user_uuids_which_following << authorized_user_uuid
-    entries = ServiceItem.show_with_uuid(user_uuids_which_following)
     content_type :json, charset: 'utf-8'
-    entries.to_tl(sort_params['from'], sort_params['to']).to_json(root: false)
+    authorized_user_uuid.to_user_defined_tl
+                        .to_tl(sort_params['from'], sort_params['to'])
+                        .to_json(root: false)
+  end
+
+  # 別途の差分取得API
+  post '/latest' do
+    authorized_user_area!
+    posted_data = JSON.parse request.body.read
+    content_type :json, charset: 'utf-8'
+    entry_data = ServiceItem.find_by_uuid_hex(posted_data)
+    latest_params = {}
+    latest_params['uuid'] = authorized_user_uuid
+    latest_params['from'] = entry_data.created_at
+    latest_params['to']   = Time.now
+    content_type :json, charset: 'utf-8'
+    latest_params.to_latest_user_defined_tl.to_json(root: false)
+  end
+
+  # 別途の差分取得API
+  post '/past' do
   end
 
   post '/tweet' do
