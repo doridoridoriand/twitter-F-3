@@ -39,6 +39,12 @@ module Timeline
     ServiceItem.show_with_uuid(user_uuids_which_following)
   end
 
+  def to_latest_user_defined_tl
+    user_uuids_which_following = ServiceFollowing.find_by_uuid(self['uuid'])
+    user_uuids_which_following << self['uuid']
+    ServiceItem.show_with_uuid_date(user_uuids_which_following, self)
+  end
+
   # ツイート内容の先頭が@で始まっており、かつそれ以降の文字列がuser_id(バリデーションに準拠する形だったときのみ)trueを返す
   # @return boolean
   def is_reply?

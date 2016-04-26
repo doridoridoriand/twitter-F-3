@@ -31,10 +31,9 @@ class ServiceItem < Items
     end
   end
 
-  # 現在未使用だけど、このメソッドの実装は不完全
   def self.show_with_uuid_date(uuids, params)
     Items.where(uuid: uuids,
-                id: params['from']..params['to'])
+                created_at: params['from']..params['to'])
   end
 
   def self.find_by_username(params)

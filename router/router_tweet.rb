@@ -25,8 +25,12 @@ class RouterTweet < Sinatra::Base
     posted_data = JSON.parse request.body.read
     content_type :json, charset: 'utf-8'
     entry_data = ServiceItem.find_by_uuid_hex(posted_data)
-    p entry_data.created_at.split('-')
-    #p Time.new(entry_data.created_at)
+    latest_params = {}
+    latest_params['uuid'] = authorized_user_uuid
+    latest_params['from'] = entry_data.created_at
+    latest_params['to']   = Time.now
+    content_type :json, charset: 'utf-8'
+    latest_params.to_latest_user_defined_tl.to_json(root: false)
   end
 
   # 別途の差分取得API
