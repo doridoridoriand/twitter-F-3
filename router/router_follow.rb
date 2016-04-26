@@ -42,6 +42,7 @@ class RouterFollow < Sinatra::Base
     else
       content_type :json, charset: 'utf-8'
       fail_response
+    end
   end
 
   get '/:user_id/following' do
