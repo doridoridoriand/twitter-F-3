@@ -34,6 +34,7 @@ class RouterFollow < Sinatra::Base
     end
   end
 
+  # 突貫で作ったため、これは機能として不完全。使用禁止
   get '/:user_id/already_follow?' do
     if ServiceUser.find_by_username(params[:user_id]).first
       content_type :json, charset: 'utf-8'
@@ -41,6 +42,7 @@ class RouterFollow < Sinatra::Base
     else
       content_type :json, charset: 'utf-8'
       fail_response
+    end
   end
 
   get '/:user_id/following' do
