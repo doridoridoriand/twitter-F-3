@@ -21,14 +21,15 @@ module Timeline
     hash = Hash.new {|h, k| h[k] = {}}
     self.each_with_index do |entry, i|
       entry_identify = {}
-      entry_identify['uuid'] = entry.entry_uuid
-      entry_identify['hex']  = entry.entry_hex
-      entry_info = ServiceItem.find_by_uuid_hex(entry_identify)
-      hash[i][:like_flag] = entry.like_flag
-      hash[i][:retweet_flag] = entry.retweet_flag
-      hash[i][:reply_flag] = entry.reply_flag
-      hash[i][:servant] = ServiceUser.find_by_uuid(entry.attacker_uuid).first.user_detail
-      hash[i][:content] = entry_info
+      entry_identify['uuid']            = entry.entry_uuid
+      entry_identify['hex']             = entry.entry_hex
+      entry_info                        = ServiceItem.find_by_uuid_hex(entry_identify)
+      hash[i][:like_flag]               = entry.like_flag
+      hash[i][:retweet_flag]            = entry.retweet_flag
+      hash[i][:reply_flag]              = entry.reply_flag
+      hash[i][:notification_created_at] = entry.created_at
+      hash[i][:servant]                 = ServiceUser.find_by_uuid(entry.attacker_uuid).first.user_detail
+      hash[i][:content]                 = entry_info
     end
     hash.values
   end
